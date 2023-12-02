@@ -27,13 +27,15 @@ mut lines := os.read_lines('./day1.txt') or { panic(err) }
 mut re := regex.regex_opt(r'(\d)|(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)') or { panic(err) }
 mut re_twone := regex.regex_opt(r'twone') or { panic(err) }
 mut re_oneight := regex.regex_opt(r'oneight') or { panic(err) }
+mut re_eightwo := regex.regex_opt(r'eightwo') or { panic(err) }
 
 mut numbers := []u8
 
 for line in lines {
     fixed_line := re_twone.replace_simple(line, '21')
     fixed_line2 := re_oneight.replace_simple(fixed_line, '18')
-    nums := re.find_all_str(fixed_line2)
+    fixed_line3 := re_eightwo.replace_simple(fixed_line2, '82')
+    nums := re.find_all_str(fixed_line3)
     //println('first  ${nums.len}')
     first := nums[0]
     last := nums[nums.len-1]
